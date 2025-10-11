@@ -1,72 +1,217 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import { GrLinkedin } from "react-icons/gr";
 
-// --- Interface for Image Data ---
-interface BirthdayImage {
-  src: string;
-  alt: string;
-  rotation: string; // Tailwind class for rotation (e.g., 'rotate-3', '-rotate-6')
-}
+// --- Data Structure derived from the provided text ---
 
-// --- Component Data ---
-const NAME = "The Birthday Man";
-const IMAGES: BirthdayImage[] = [
+const FULL_NAME = "Dr Frederick Jesugbemi Oluwafemi Akinfala";
+const CURRENT_TITLE =
+  "Executive Director at NELFUND | Championing Transformation across Private and Public sector";
+const LINKEDIN_URL = "https://www.linkedin.com/in/dr-femiakinfala";
+
+const SUMMARY_TEXT = `
+Dr Akinfala is a seasoned professional with a diverse career spanning the Nigerian economy's public and private sectors. He currently serves as the Executive Director, Finance & Administration at the Nigerian Education Loan Fund (NELFUND). Prior to this, he was the pioneering Director of Human Resources and General Services at the Nigerian Police Trust Fund and Head of Research & Development at the Federal Inland Revenue Service (FIRS). He also dedicated a decade to academia as a lecturer at the University of Lagos. His foundation began in banking & finance at esteemed institutions including First Bank Plc, Aideas Banc Ltd, and Peninsula Credits Ltd. A key achievement includes leading a team to develop the FIRS Tax Awareness Index, a scientific and standardized measurement of tax awareness in Africa's tax administration history. Dr Akinfala's comprehensive educational background focuses on Personnel Management, Bank Fraud, and Research and Development, and he maintains active membership in numerous professional organizations globally.
+`;
+
+const EXPERIENCE_DATA = [
   {
-    src: "https://cdn.pixabay.com/photo/2023/08/24/04/07/birthday-8209747_1280.jpg",
-    alt: "A great memory of him smiling",
-    rotation: "rotate-3",
+    role: "Executive Director, Finance & Administration",
+    organization: "Nigerian Education Loan Fund (NELFUND)",
+    dates: "April 2024 – Present",
+    location: "Federal Capital Territory, Nigeria",
+    highlights: [
+      "Leads strategy formulation, including Annual Budgets, Manpower, and Training Plans.",
+      "Drives the development and implementation of business work plans to achieve the FUND's mandate.",
+      "Monitors, evaluates, and reconciles funds received and disbursed for student loans and operations.",
+      "Manages the overall credit portfolio to optimize risk-return trade-offs and implement risk mitigation techniques.",
+    ],
   },
   {
-    src: "https://cdn.pixabay.com/photo/2015/08/31/23/42/cake-916253_1280.jpg",
-    alt: "A picture from a recent trip",
-    rotation: "-rotate-2",
+    role: "Director Human Resources and General Services (Pioneering Role)",
+    organization: "Nigeria Police Trust Fund",
+    dates: "June 2020 – March 2024",
+    highlights: [
+      "Oversaw HR documentation, staff promotion, disciplinary matters, and welfare.",
+      "Managed essential services including facility management, store administration, fleet control, and security provision.",
+      "Prepared and implemented staff training programmes (local and international) and handled staff pensions.",
+    ],
   },
   {
-    src: "https://cdn.pixabay.com/photo/2021/12/30/22/08/presents-6904620_1280.jpg",
-    alt: "The moment he achieved a milestone",
-    rotation: "rotate-1",
+    role: "Deputy Director & Special Adviser to the Executive Chairman",
+    organization: "Federal Inland Revenue Service (FIRS)",
+    dates: "2015 – 2020",
+    highlights: [
+      "Responsible for sourcing donor agencies for the Service.",
+      "Ensured research with potential positive impact on FIRS objectives was undertaken.",
+      "Monitored and reported on business and economic activities impacting the Service's objectives.",
+    ],
   },
   {
-    src: "https://cdn.pixabay.com/photo/2021/05/22/16/53/birthday-6274123_1280.jpg",
-    alt: "A casual, fun picture",
-    rotation: "-rotate-3",
+    role: "Lecturer",
+    organization: "University of Lagos",
+    dates: "2005 – 2015",
+  },
+  {
+    role: "Executive Director- Treasury Operations",
+    organization: "Three Stars Building Society",
+    dates: "1994 – 1997",
   },
 ];
 
-const CORE_VALUES = [
+const PUBLICATIONS_DATA = [
   {
-    icon: "🌟",
-    title: "Integrity",
+    title:
+      "Fraudulent behavior among bank employees in Nigeria: A Psychological Analysis.",
+    type: "Ph.D Thesis",
+    institution: "University of Lagos",
+  },
+  {
+    title: "The effects of fraudulent behaviour on the society.",
+    type: "M.Sc Thesis",
+    institution: "University of Lagos",
+  },
+  {
+    title: "Patterns and Trends in Bank Frauds in Nigeria: 1990-2014",
+    type: "Research Paper",
+    institution: "Academic/Professional",
+  },
+  {
+    title:
+      "Dimensions and Implications of Corruption in the Nigerian Police Force",
+    type: "Article/Journal",
+    institution: "Academic/Professional",
+  },
+  {
+    title:
+      "Neuroticism/Extraversion as a measure of involvement in Alcohol use.",
+    type: "B.Sc Thesis",
+    institution: "University of Ibadan",
+  },
+];
+
+const EDUCATION_DATA = [
+  {
+    institution: "University of Lagos",
+    degree: "Doctor of Philosophy - PhD, Psychology",
+    dates: "1995 – 2005",
+  },
+  {
+    institution: "University of Lagos",
+    degree: "Master of Science - MS, Psychology",
+    dates: "1990 – 1991",
+  },
+  {
+    institution: "University of Ibadan",
+    degree: "Bachelor of Science - BS, Psychology",
+    dates: "1985 – 1988",
+  },
+];
+
+// Replaced for a professional bio theme
+const ATTRIBUTES_SUMMARY = [
+  {
+    icon: "🎓",
+    title: "Advanced Psychology",
     description:
-      "Your word is your bond. A model of honesty and principle in every situation.",
+      "Ph.D. and M.Sc. in Psychology focused on complex societal and organizational behavior (Fraud, Corruption).",
+  },
+  {
+    icon: "🏢",
+    title: "Public Sector Transformation",
+    description:
+      "Pioneering leadership roles at NELFUND and Nigeria Police Trust Fund, driving key organizational setup and HR strategies.",
   },
   {
     icon: "💡",
-    title: "Visionary",
+    title: "Research & Innovation",
     description:
-      "Always looking ahead, planning for the future, and inspiring others to do the same.",
+      "Developer of the FIRS Tax Awareness Index and extensive publication history in forensic psychology and banking fraud.",
   },
   {
-    icon: "🛡️",
-    title: "Supportive",
+    icon: "💼",
+    title: "Fellowships & Credentials",
     description:
-      "Our unwavering rock. Always there with guidance, encouragement, and strength.",
-  },
-  {
-    icon: "🤣",
-    title: "Great Humor",
-    description:
-      "The ability to make any room light up with laughter and good spirits.",
+      "FIOARM, FCMA, APA, MIMC, MCIHRM, CIPM — demonstrating commitment to management, risk, and HR professionalism.",
   },
 ];
 
-const FloatingBalloon: React.FC<{
+// const IMAGES: BioImage[] = [
+//   {
+//     src: "/images/1.jpg",
+//     alt: "The visionary. A decisive portrait embodying leadership and clarity of purpose.", // New theme: Vision
+//     rotation: "rotate-3",
+//   },
+//   {
+//     src: "/images/2.jpg",
+//     alt: "The Strategist. Deep in thought, planning the next major organizational milestone.", // New theme: Strategy/Planning
+//     rotation: "-rotate-2",
+//   },
+//   {
+//     src: "/images/3.jpg",
+//     alt: "The Collaborator. Engaging with the team, fostering a culture of joint success.", // New theme: Collaboration/Teamwork
+//     rotation: "rotate-1",
+//   },
+//   {
+//     src: "/images/4.jpg",
+//     alt: "The Mentor. Sharing expertise and inspiring the next generation of leaders.", // New theme: Mentorship/Teaching
+//     rotation: "-rotate-3",
+//   },
+//   {
+//     src: "/images/5.jpg",
+//     alt: "The Innovator. Celebrating the launch or completion of a landmark project.", // New theme: Achievement/Innovation
+//     rotation: "rotate-2",
+//   },
+//   {
+//     src: "/images/6.jpg",
+//     alt: "The Legacy. Reflecting on years of dedication and profound professional impact.", // New theme: Reflection/Legacy
+//     rotation: "-rotate-1",
+//   },
+// ];
+
+const IMAGES = [
+  {
+    src: "/images/1.jpg",
+    alt: "Leading the Nigerian Education Loan Fund, focusing on finance and administration strategy.",
+    rotation: "rotate-3",
+  },
+  {
+    src: "/images/2.jpg",
+    alt: "Pioneering the Director of HR role at the Nigeria Police Trust Fund (2020-2024).",
+    rotation: "-rotate-2",
+  },
+  {
+    src: "/images/3.jpg",
+    alt: "Heading Research & Development at the Federal Inland Revenue Service (FIRS).",
+    rotation: "rotate-1",
+  },
+  {
+    src: "/images/4.jpg",
+    alt: "Ten years serving as a Lecturer at the University of Lagos.",
+    rotation: "-rotate-3",
+  },
+  {
+    src: "/images/5.jpg",
+    alt: "Early career experience in banking and financial institutions.",
+    rotation: "rotate-2",
+  },
+  {
+    src: "/images/6.jpg",
+    alt: "Participating in international training and conferences on leadership and finance.",
+    rotation: "-rotate-1",
+  },
+];
+
+// --- Utility Components ---
+
+const FloatingBalloon = ({
+  color,
+  position,
+  delay,
+}: {
   color: string;
   position: string;
   delay: string;
-}> = ({ color, position, delay }) => (
+}) => (
   <div
     className={`hidden lg:block absolute w-16 h-20 rounded-t-full shadow-lg z-0 animate-float-slow ${position}`}
     style={{
@@ -80,14 +225,28 @@ const FloatingBalloon: React.FC<{
   </div>
 );
 
-const BirthdayPage: React.FC = () => {
-  const confettiRef = useRef<HTMLDivElement>(null);
+// LinkedIn Icon SVG
+const LinkedInIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className="w-10 h-10 fixed bottom-4 right-10 text-amber-500 hover:text-amber-400 transition-colors duration-300 cursor-pointer"
+    style={{ zIndex: 50 }}
+  >
+    <path d="M20.5 2H3.5A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5V8h3v11Zm-1.5-12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3ZM19 19h-3v-5c0-1.2-.6-2.5-2-2.5-1.5 0-2 1.2-2 2.5v5h-3V8h3v1.7c.6-1.1 1.7-2 3-2 2.7 0 4 1.8 4 4.3V19Z" />
+  </svg>
+);
 
-  // ✅ FIX: Generate stars on the client only to avoid hydration mismatch
+// --- Main Component ---
+
+const BiographyPage: React.FC = () => {
+  const confettiRef = useRef<HTMLDivElement>(null);
   const [stars, setStars] = useState<
     { top: string; left: string; delay: string }[]
   >([]);
 
+  // Initialize background stars
   useEffect(() => {
     const generated = Array.from({ length: 50 }, () => ({
       top: `${Math.random() * 100}%`,
@@ -97,7 +256,7 @@ const BirthdayPage: React.FC = () => {
     setStars(generated);
   }, []);
 
-  // --- CONFETTI ANIMATION LOGIC ---
+  // Initialize confetti/sparkle effect
   useEffect(() => {
     const container = confettiRef.current;
     if (!container) return;
@@ -107,7 +266,6 @@ const BirthdayPage: React.FC = () => {
 
     const createConfetti = () => {
       const confetti = document.createElement("div");
-      confetti.classList.add("confetti");
       confetti.className = `absolute w-2 h-2 rounded-full opacity-0 animate-confetti`;
       confetti.style.backgroundColor =
         colors[Math.floor(Math.random() * colors.length)];
@@ -129,89 +287,43 @@ const BirthdayPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-neutral-900 text-white font-sans overflow-hidden relative">
-      <style jsx global>{`
+      {/* --- Custom CSS Animations --- */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
         @keyframes confetti-fall {
-          0% {
-            transform: translateY(-100vh) rotate(0deg);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(100vh) rotate(720deg);
-            opacity: 0.8;
-          }
+          0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+          100% { transform: translateY(100vh) rotate(720deg); opacity: 0.8; }
         }
-        .animate-confetti {
-          animation: confetti-fall linear infinite;
-        }
+        .animate-confetti { animation: confetti-fall linear infinite; }
         @keyframes fade-in {
-          0% {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          0% { opacity: 0; transform: translateY(20px); }
+          100% { opacity: 1; transform: translateY(0); }
         }
-        @keyframes twinkle {
-          0%,
-          100% {
-            opacity: 0.3;
-          }
-          50% {
-            opacity: 1;
-          }
-        }
-        .star {
-          animation: twinkle 4s ease-in-out infinite;
-        }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+        .star { animation: twinkle 4s ease-in-out infinite; }
         @keyframes glow-pulse {
-          0%,
-          100% {
-            filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.6));
-          }
-          50% {
-            filter: drop-shadow(0 0 20px rgba(252, 211, 77, 1));
-            transform: scale(1.01);
-          }
+          0%, 100% { filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.6)); }
+          50% { filter: drop-shadow(0 0 20px rgba(252, 211, 77, 1)); transform: scale(1.01); }
         }
-        .animate-glow-pulse {
-          animation: glow-pulse 4s ease-in-out infinite;
-        }
+        .animate-glow-pulse { animation: glow-pulse 4s ease-in-out infinite; }
         @keyframes subtle-pop {
-          0% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.01);
-          }
-          100% {
-            transform: scale(1);
-          }
+          0% { transform: scale(1); } 50% { transform: scale(1.01); } 100% { transform: scale(1); }
         }
-        .animate-subtle-pop {
-          animation: subtle-pop 3s ease-in-out 2s 1;
-        }
+        .animate-subtle-pop { animation: subtle-pop 3s ease-in-out 2s 1; }
         @keyframes float-slow {
-          0%,
-          100% {
-            transform: translateY(0) rotate(2deg);
-          }
-          50% {
-            transform: translateY(-20px) rotate(-2deg);
-          }
+          0%, 100% { transform: translateY(0) rotate(2deg); }
+          50% { transform: translateY(-20px) rotate(-2deg); }
         }
-        .animate-float-slow {
-          animation: float-slow 15s ease-in-out infinite;
-        }
+        .animate-float-slow { animation: float-slow 15s ease-in-out infinite; }
+        .section-fade { opacity: 0; animation: fade-in 1s ease-out forwards; }
       `}</style>
 
+      {/* Confetti and Stars Background */}
       <div
         ref={confettiRef}
         className="fixed inset-0 pointer-events-none z-50"
       ></div>
-
-      {/* ✅ Safe client-only stars */}
       <div className="absolute inset-0 z-0">
         {stars.map((star, i) => (
           <div
@@ -225,8 +337,6 @@ const BirthdayPage: React.FC = () => {
           />
         ))}
       </div>
-
-      {/* Floating Balloons */}
       <FloatingBalloon color="#3B82F6" position="top-10 left-10" delay="0s" />
       <FloatingBalloon
         color="#EF4444"
@@ -238,52 +348,47 @@ const BirthdayPage: React.FC = () => {
         {/* --- HERO SECTION: Title and Main Message --- */}
         <section className="text-center pt-16 pb-10 sm:pt-24 sm:pb-16">
           <h1
-            className="text-6xl sm:text-7xl lg:text-9xl font-extrabold tracking-tight animate-glow-pulse"
+            className="text-6xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight animate-glow-pulse"
             style={{
               color: "#FCD34D", // Gold
               textShadow: "0 0 10px rgba(252, 211, 77, 0.8)",
             }}
           >
-            HAPPY BIRTHDAY!
+            {FULL_NAME}
           </h1>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-light mt-4 tracking-wide"
-            style={{
-              animation: "fade-in 1s ease-out 0.8s forwards",
-              opacity: 0,
-            }}
+            className="text-xl sm:text-xl lg:text-2xl font-light mt-4 tracking-wide text-neutral-300 section-fade"
+            style={{ animationDelay: "0.8s" }}
           >
-            To our incredible <span className="font-semibold">{NAME}</span>
+            <span className="font-semibold text-amber-400">
+              {CURRENT_TITLE}
+            </span>
           </h2>
         </section>
 
-        {/* --- QUOTE / MAIN THEME SECTION --- */}
+        {/* --- SUMMARY SECTION --- */}
         <section
-          className="max-w-4xl mx-auto my-12 p-8 md:p-12 bg-neutral-800/80 backdrop-blur-sm rounded-xl shadow-2xl border-t-4 border-amber-500 animate-subtle-pop"
-          style={{ animation: "fade-in 1s ease-out 1.5s forwards", opacity: 0 }}
+          className="max-w-5xl mx-auto my-12 p-8 md:p-12 bg-neutral-800/80 backdrop-blur-sm rounded-xl shadow-2xl border-t-4 border-amber-500 section-fade"
+          style={{ animationDelay: "1.5s" }}
         >
-          <div className="text-4xl text-amber-500 font-serif mb-4">“</div>
-          <p className="text-xl md:text-2xl italic leading-relaxed text-neutral-200">
-            Today, we celebrate not just the passing of another year, but the
-            remarkable man you are: a steadfast friend, a passionate leader, and
-            a source of constant inspiration. May this new year bring you joy,
-            health, and endless opportunities to chase your greatest passions.
+          <h3 className="text-3xl font-bold text-amber-500 mb-6">
+            Executive Summary
+          </h3>
+          <p className="text-lg leading-relaxed text-neutral-200 whitespace-pre-line">
+            {SUMMARY_TEXT.trim()}
           </p>
-          <div className="text-right mt-6 text-lg font-medium text-amber-400">
-            — With all our love and best wishes
-          </div>
         </section>
 
-        {/* --- NEW: CORE VALUES / ATTRIBUTES SECTION --- */}
+        {/* --- KEY EXPERTISE SECTION --- */}
         <section
-          className="max-w-6xl mx-auto my-20 pt-10"
-          style={{ animation: "fade-in 1s ease-out 2s forwards", opacity: 0 }}
+          className="max-w-6xl mx-auto my-20 pt-10 section-fade"
+          style={{ animationDelay: "2.0s" }}
         >
           <h3 className="text-4xl font-bold text-center mb-12 text-amber-500">
-            Celebrating Your Best Qualities
+            Key Expertise & Credentials
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {CORE_VALUES.map((value, index) => (
+            {ATTRIBUTES_SUMMARY.map((value, index) => (
               <div
                 key={index}
                 className="p-4 sm:p-6 bg-neutral-800 rounded-lg text-center shadow-xl transition duration-300 transform hover:bg-amber-500/10 hover:shadow-amber-500/50 hover:scale-[1.03]"
@@ -298,56 +403,123 @@ const BirthdayPage: React.FC = () => {
           </div>
         </section>
 
-        {/* --- GALLERY SECTION: Photo Layout --- */}
-        <section className="mt-20">
-          <h3
-            className="text-4xl font-bold text-center mb-12 text-amber-500"
-            style={{
-              animation: "fade-in 0.8s ease-out 2.5s forwards",
-              opacity: 0,
-            }}
-          >
-            A Few Memories to Treasure
+        {/* --- EXPERIENCE SECTION --- */}
+        <section
+          className="max-w-5xl mx-auto my-20 pt-10 section-fade"
+          style={{ animationDelay: "2.5s" }}
+        >
+          <h3 className="text-4xl font-bold text-center mb-12 text-amber-500">
+            Professional Experience
           </h3>
+          <div className="space-y-12">
+            {EXPERIENCE_DATA.map((job, index) => (
+              <div
+                key={index}
+                className="p-6 bg-neutral-800 rounded-xl shadow-xl border-l-4 border-amber-600 transition duration-300 hover:border-amber-400"
+              >
+                <div className="flex justify-between items-start flex-wrap mb-2">
+                  <h4 className="text-xl font-bold text-white leading-tight">
+                    {job.role}
+                  </h4>
+                  <p className="text-sm font-medium text-amber-400">
+                    {job.dates}
+                  </p>
+                </div>
+                <p className="text-lg italic text-neutral-300 mb-3">
+                  {job.organization}
+                </p>
+                {job.highlights && job.highlights.length > 0 && (
+                  <ul className="list-disc list-inside space-y-1 text-neutral-400 ml-4">
+                    {job.highlights.map((highlight, hIndex) => (
+                      <li key={hIndex} className="text-sm">
+                        {highlight}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
 
+        {/* --- EDUCATION & PUBLICATIONS SECTION --- */}
+        <section
+          className="max-w-5xl mx-auto my-20 pt-10 grid grid-cols-1 md:grid-cols-2 gap-12 section-fade"
+          style={{ animationDelay: "3.0s" }}
+        >
+          {/* Education */}
+          <div>
+            <h3 className="text-3xl font-bold text-amber-500 mb-8 border-b border-amber-600/50 pb-3">
+              Academic Background
+            </h3>
+            <div className="space-y-6">
+              {EDUCATION_DATA.map((edu, index) => (
+                <div
+                  key={index}
+                  className="bg-neutral-800 p-4 rounded-lg shadow-md"
+                >
+                  <p className="text-lg font-semibold text-white">
+                    {edu.degree}
+                  </p>
+                  <p className="text-md text-amber-400">{edu.institution}</p>
+                  <p className="text-sm text-neutral-400">{edu.dates}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Publications */}
+          <div>
+            <h3 className="text-3xl font-bold text-amber-500 mb-8 border-b border-amber-600/50 pb-3">
+              Selected Publications
+            </h3>
+            <div className="space-y-6">
+              {PUBLICATIONS_DATA.map((pub, index) => (
+                <div
+                  key={index}
+                  className="bg-neutral-800 p-4 rounded-lg shadow-md"
+                >
+                  <p className="text-md font-medium text-white leading-snug">
+                    <span className="font-bold text-amber-400 mr-2">
+                      [{pub.type}]
+                    </span>
+                    {pub.title}
+                  </p>
+                  <p className="text-sm italic text-neutral-400 mt-1">
+                    Affiliation: {pub.institution}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* --- GALLERY SECTION (Retained for visual break) --- */}
+        <section
+          className="mt-20 section-fade"
+          style={{ animationDelay: "3.5s" }}
+        >
+          <h3 className="text-4xl font-bold text-center mb-12 text-amber-500">
+            Career Moments
+          </h3>
           <div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 max-w-7xl mx-auto"
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto"
             style={{ perspective: "1000px" }}
           >
             {IMAGES.map((img, index) => (
               <div
                 key={index}
-                // NEW: Added group-hover:rotate-[var(--r)] and transition for 3D effect
                 className={`relative group overflow-hidden rounded-xl shadow-xl transition-transform duration-500 hover:scale-[1.05] hover:shadow-2xl hover:shadow-amber-500/50 ${img.rotation}`}
-                style={{
-                  animation: `fade-in 0.8s ease-out ${
-                    2.7 + index * 0.2
-                  }s forwards`,
-                  opacity: 0,
-                  // 3D Tilt variable on hover
-                  ["--r" as keyof React.CSSProperties]: img.rotation.includes(
-                    "-"
-                  )
-                    ? "rotateY(8deg)"
-                    : "rotateY(-8deg)",
-                }}
               >
-                {/* Image Placeholder */}
                 <Image
+                  width={600}
+                  height={600}
                   src={img.src}
                   alt={img.alt}
-                  className="w-full h-full object-cover aspect-square transition duration-300 group-hover:brightness-110 group-hover:skew-x-1"
-                  onError={(e) => {
-                    e.currentTarget.src =
-                      "https://placehold.co/400x400/1E3A8A/FCD34D?text=Photo+Error";
-                  }}
-                  width={400}
-                  height={400}
+                  className="w-full h-full object-cover aspect-square transition duration-300 group-hover:brightness-110"
                 />
-
-                {/* Overlay Caption */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
-                  <p className="text-center text-sm font-light italic">
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-2">
+                  <p className="text-center text-xs font-light italic text-neutral-100">
                     {img.alt}
                   </p>
                 </div>
@@ -356,22 +528,24 @@ const BirthdayPage: React.FC = () => {
           </div>
         </section>
 
-        {/* --- CLOSING MESSAGE --- */}
-
-        <GrLinkedin className="bottom-4 right-10 fixed text-4xl text-amber-500 hover:text-amber-400 transition-colors duration-300" />
-
+        {/* --- CLOSING MESSAGE / CALL TO ACTION --- */}
+        <a target="_blank" href={LINKEDIN_URL} rel="noopener noreferrer">
+          <LinkedInIcon />
+        </a>
         <section
-          className="text-center mt-24 pt-10 border-t border-amber-600/50"
-          style={{ animation: "fade-in 1s ease-out 4s forwards", opacity: 0 }}
+          className="text-center mt-24 pt-10 pb-16 border-t border-amber-600/50 section-fade"
+          style={{ animationDelay: "4.0s" }}
         >
           <p className="text-3xl font-semibold mb-3">
-            Wishing you the best day,
+            Connecting Public Service, Finance, and Research
           </p>
-          <p className="text-xl text-amber-500">From all of us.</p>
+          <p className="text-xl text-amber-500">
+            Learn more about Dr. Akinfala&apos;s contributions on LinkedIn.
+          </p>
         </section>
       </main>
     </div>
   );
 };
 
-export default BirthdayPage;
+export default BiographyPage;
