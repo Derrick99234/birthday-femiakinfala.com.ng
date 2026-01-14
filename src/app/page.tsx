@@ -6,72 +6,71 @@ import React, { useEffect, useRef, useState } from "react";
 
 const FULL_NAME = "Dr Frederick Jesugbemi Oluwafemi Akinfala";
 const CURRENT_TITLE =
-  "Executive Director at NELFUND | Championing Transformation across Private and Public sector";
+  "Executive Director of Finance and Administration at the Nigeria Education Loan Fund (NELFUND)";
 const LINKEDIN_URL = "https://www.linkedin.com/in/dr-femiakinfala";
 
-const SUMMARY_TEXT = `
-Dr Akinfala is a seasoned professional with a diverse career spanning the Nigerian economy's public and private sectors. He currently serves as the Executive Director, Finance & Administration at the Nigerian Education Loan Fund (NELFUND). Prior to this, he was the pioneering Director of Human Resources and General Services at the Nigerian Police Trust Fund and Head of Research & Development at the Federal Inland Revenue Service (FIRS). He also dedicated a decade to academia as a lecturer at the University of Lagos. His foundation began in banking & finance at esteemed institutions including First Bank Plc, Aideas Banc Ltd, and Peninsula Credits Ltd. A key achievement includes leading a team to develop the FIRS Tax Awareness Index, a scientific and standardized measurement of tax awareness in Africa's tax administration history. Dr Akinfala's comprehensive educational background focuses on Personnel Management, Bank Fraud, and Research and Development, and he maintains active membership in numerous professional organizations globally.
-`;
+const SUMMARY_TEXT = `Dr Frederick Jesugbemi Oluwafemi Akinfala is a seasoned professional with a diverse career in the Nigerian economy's public and private sectors. Currently, he holds the position of Executive Director of Finance and Administration at the Nigeria Education Loan Fund (NELFUND), having previously served as the pioneering Director of Human Resources and General Services at the Nigerian Police Trust Fund. Before his role at the Nigerian Police Trust Fund, Dr Akinfala held the Head of Research and Development position at the Federal Inland Revenue Service. In addition to his professional career, he has contributed to academia as a lecturer at the University of Lagos.
+
+Dr Akinfala's career journey began in banking and finance, working at esteemed institutions, including First Bank Plc, Aideas Banc Ltd, and Peninsula Credits Ltd. He later served as an Executive Director (Treasury Operations) at T S Mortgage Bank Ltd.
+
+With a solid academic background, Dr Akinfala has focused his studies on Personnel Management, Bank Fraud, and Research and Development. He holds a PhD (2005) and an M.Sc. degree (1990) from the esteemed University of First Choice and the nation's pride, the University of Lagos. He has a B.Sc. (1987) from the University of Ibadan. In 2006, he was elected as a University of Lagos's Senate member and served as a University of Lagos Consult board member. Between 2002 and 2006, he held the ex officio position and later the National Social Secretary of the University of Lagos Alumni Association. He also serves as the President of the Sickle Cell Club at the University of Lagos, Akoka.
+
+As an active member of various professional organisations, Dr Akinfala is a proud member or fellow of associations such as the Institute of Organizational and Administrative Risk Management, the Chartered Institute of Cost and Management Accountants, the American Psychological Association, the International Organization of Criminological Psychology, Nigeria Institute of Security Studies, Institute of Management Consultants, Chartered Institute of Human Resources Management, and Nigeria Institute of Personnel Management.
+
+In addition to his professional commitments, Dr Akinfala has authored numerous publications, journals, and articles that have become valuable references in the field of learning. Notably, he led a team of tax experts to develop the Federal Inland Revenue Service Tax Awareness Index, a scientific and standardised measurement of tax awareness level in Africa's history of tax administration. This measurement has been published in the International Journal of Business and Management 13(7):249 and translated into various languages, including Yoruba, Hausa, Igbo, English, Tiv, and French.
+
+Driven by a passion for continuous professional development, Dr Akinfala has participated in various programs, training, and conferences on leadership, taxation, and finance on both national and international levels. He has attended training, seminars, and conferences in the United States, China, Morocco, Canada, Uruguay, Panama, Seychelles, Ghana, Kenya, Uganda, Ethiopia, Madagascar, Cuba, Costa Rica, and many others to expand his knowledge in tax, finance, and leadership-related matters.
+
+Beyond his professional accomplishments, Dr Akinfala is dedicated to his family and is happily married with three children.`;
 
 const EXPERIENCE_DATA = [
   {
-    role: "Executive Director, Finance & Administration",
-    organization: "Nigerian Education Loan Fund (NELFUND)",
-    dates: "April 2024 – Present",
-    location: "Federal Capital Territory, Nigeria",
-    highlights: [
-      "Leads strategy formulation, including Annual Budgets, Manpower, and Training Plans.",
-      "Drives the development and implementation of business work plans to achieve the FUND's mandate.",
-      "Monitors, evaluates, and reconciles funds received and disbursed for student loans and operations.",
-      "Manages the overall credit portfolio to optimize risk-return trade-offs and implement risk mitigation techniques.",
-    ],
+    role: "Executive Director of Finance and Administration",
+    organization: "Nigeria Education Loan Fund (NELFUND)",
   },
   {
-    role: "Director Human Resources and General Services (Pioneering Role)",
-    organization: "Nigeria Police Trust Fund",
-    dates: "June 2020 – March 2024",
-    highlights: [
-      "Oversaw HR documentation, staff promotion, disciplinary matters, and welfare.",
-      "Managed essential services including facility management, store administration, fleet control, and security provision.",
-      "Prepared and implemented staff training programmes (local and international) and handled staff pensions.",
-    ],
+    role: "Director of Human Resources and General Services (Pioneering Role)",
+    organization: "Nigerian Police Trust Fund",
   },
   {
-    role: "Deputy Director & Special Adviser to the Executive Chairman",
+    role: "Head of Research and Development",
     organization: "Federal Inland Revenue Service (FIRS)",
-    dates: "2015 – 2020",
-    highlights: [
-      "Responsible for sourcing donor agencies for the Service.",
-      "Ensured research with potential positive impact on FIRS objectives was undertaken.",
-      "Monitored and reported on business and economic activities impacting the Service's objectives.",
-    ],
   },
   {
     role: "Lecturer",
     organization: "University of Lagos",
-    dates: "2005 – 2015",
   },
   {
-    role: "Executive Director- Treasury Operations",
-    organization: "Three Stars Building Society",
-    dates: "1994 – 1997",
+    role: "Executive Director (Treasury Operations)",
+    organization: "T S Mortgage Bank Ltd",
+  },
+  {
+    role: "Banking & Finance Professional",
+    organization: "First Bank Plc, Aideas Banc Ltd, Peninsula Credits Ltd",
   },
 ];
 
 const PUBLICATIONS_DATA = [
   {
     title:
-      "Fraudulent behavior among bank employees in Nigeria: A Psychological Analysis.",
+      "FIRS Tax Awareness Index - Published in International Journal of Business and Management 13(7):249",
+    type: "Research Paper",
+    institution: "Federal Inland Revenue Service",
+    details:
+      "A scientific and standardised measurement of tax awareness level in Africa's history of tax administration, translated into Yoruba, Hausa, Igbo, English, Tiv, and French.",
+  },
+  {
+    title: "Fraudulent behavior among bank employees in Nigeria",
     type: "Ph.D Thesis",
     institution: "University of Lagos",
   },
   {
-    title: "The effects of fraudulent behaviour on the society.",
+    title: "The effects of fraudulent behaviour on the society",
     type: "M.Sc Thesis",
     institution: "University of Lagos",
   },
   {
-    title: "Patterns and Trends in Bank Frauds in Nigeria: 1990-2014",
+    title: "Patterns and Trends in Bank Frauds in Nigeria",
     type: "Research Paper",
     institution: "Academic/Professional",
   },
@@ -82,8 +81,7 @@ const PUBLICATIONS_DATA = [
     institution: "Academic/Professional",
   },
   {
-    title:
-      "Neuroticism/Extraversion as a measure of involvement in Alcohol use.",
+    title: "Neuroticism/Extraversion as a measure of involvement in Alcohol use",
     type: "B.Sc Thesis",
     institution: "University of Ibadan",
   },
@@ -92,18 +90,18 @@ const PUBLICATIONS_DATA = [
 const EDUCATION_DATA = [
   {
     institution: "University of Lagos",
-    degree: "Doctor of Philosophy - PhD, Psychology",
-    dates: "1995 – 2005",
+    degree: "Doctor of Philosophy - PhD",
+    dates: "2005",
   },
   {
     institution: "University of Lagos",
-    degree: "Master of Science - MS, Psychology",
-    dates: "1990 – 1991",
+    degree: "Master of Science - M.Sc",
+    dates: "1990",
   },
   {
     institution: "University of Ibadan",
-    degree: "Bachelor of Science - BS, Psychology",
-    dates: "1985 – 1988",
+    degree: "Bachelor of Science - B.Sc",
+    dates: "1987",
   },
 ];
 
@@ -111,29 +109,89 @@ const EDUCATION_DATA = [
 const ATTRIBUTES_SUMMARY = [
   {
     icon: "🎓",
-    title: "Advanced Psychology",
+    title: "Advanced Education",
     description:
-      "Ph.D. and M.Sc. in Psychology focused on complex societal and organizational behavior (Fraud, Corruption).",
+      "PhD (2005) and M.Sc. (1990) from University of Lagos, B.Sc. (1987) from University of Ibadan — focused on Personnel Management, Bank Fraud, and Research and Development.",
   },
   {
     icon: "🏢",
-    title: "Public Sector Transformation",
+    title: "Leadership Excellence",
     description:
-      "Pioneering leadership roles at NELFUND and Nigeria Police Trust Fund, driving key organizational setup and HR strategies.",
+      "Executive Director at NELFUND, pioneering Director at Nigerian Police Trust Fund, Head of R&D at FIRS, University of Lagos Senate member and Sickle Cell Club President.",
   },
   {
     icon: "💡",
     title: "Research & Innovation",
     description:
-      "Developer of the FIRS Tax Awareness Index and extensive publication history in forensic psychology and banking fraud.",
+      "Led team to develop the FIRS Tax Awareness Index — a scientific measurement of tax awareness published in International Journal of Business and Management.",
   },
   {
     icon: "💼",
-    title: "Fellowships & Credentials",
+    title: "Professional Excellence",
     description:
-      "FIOARM, FCMA, APA, MIMC, MCIHRM, CIPM — demonstrating commitment to management, risk, and HR professionalism.",
+      "Member of 8+ professional bodies including IOARM, CICMA, APA, IOCP, NISS, IMC, CIHRM, and NIPM.",
   },
 ];
+
+const LEADERSHIP_DATA = [
+  {
+    role: "University of Lagos Senate Member",
+    year: "2006",
+    details:
+      "Elected as Senate member representing the University community.",
+  },
+  {
+    role: "University of Lagos Consult Board Member",
+    year: "2006",
+    details:
+      "Served on the Consult board, contributing to university governance and development.",
+  },
+  {
+    role: "National Social Secretary",
+    year: "2002 – 2006",
+    details:
+      "University of Lagos Alumni Association, held ex officio position and later National Social Secretary.",
+  },
+  {
+    role: "President",
+    year: "Ongoing",
+    details:
+      "President of the Sickle Cell Club at the University of Lagos, Akoka.",
+  },
+];
+
+const PROFESSIONAL_MEMBERSHIPS = [
+  "Institute of Organizational and Administrative Risk Management",
+  "Chartered Institute of Cost and Management Accountants",
+  "American Psychological Association",
+  "International Organization of Criminological Psychology",
+  "Nigeria Institute of Security Studies",
+  "Institute of Management Consultants",
+  "Chartered Institute of Human Resources Management",
+  "Nigeria Institute of Personnel Management",
+];
+
+const INTERNATIONAL_TRAINING = [
+  "United States",
+  "China",
+  "Morocco",
+  "Canada",
+  "Uruguay",
+  "Panama",
+  "Seychelles",
+  "Ghana",
+  "Kenya",
+  "Uganda",
+  "Ethiopia",
+  "Madagascar",
+  "Cuba",
+  "Costa Rica",
+];
+
+const FAMILY_SECTION = {
+  title: "Personal Life",
+  description: "Beyond his professional accomplishments, Dr Akinfala is dedicated to his family and is happily married with three children.",
+};
 
 // const IMAGES: BioImage[] = [
 //   {
@@ -417,26 +475,12 @@ const BiographyPage: React.FC = () => {
                 key={index}
                 className="p-6 bg-neutral-800 rounded-xl shadow-xl border-l-4 border-amber-600 transition duration-300 hover:border-amber-400"
               >
-                <div className="flex justify-between items-start flex-wrap mb-2">
-                  <h4 className="text-xl font-bold text-white leading-tight">
-                    {job.role}
-                  </h4>
-                  <p className="text-sm font-medium text-amber-400">
-                    {job.dates}
-                  </p>
-                </div>
-                <p className="text-lg italic text-neutral-300 mb-3">
+                <h4 className="text-xl font-bold text-white leading-tight mb-2">
+                  {job.role}
+                </h4>
+                <p className="text-lg italic text-neutral-300">
                   {job.organization}
                 </p>
-                {job.highlights && job.highlights.length > 0 && (
-                  <ul className="list-disc list-inside space-y-1 text-neutral-400 ml-4">
-                    {job.highlights.map((highlight, hIndex) => (
-                      <li key={hIndex} className="text-sm">
-                        {highlight}
-                      </li>
-                    ))}
-                  </ul>
-                )}
               </div>
             ))}
           </div>
@@ -488,9 +532,104 @@ const BiographyPage: React.FC = () => {
                   <p className="text-sm italic text-neutral-400 mt-1">
                     Affiliation: {pub.institution}
                   </p>
+                  {pub.details && (
+                    <p className="text-sm text-neutral-300 mt-2 leading-relaxed">
+                      {pub.details}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* --- LEADERSHIP & COMMUNITY SERVICE SECTION --- */}
+        <section
+          className="max-w-5xl mx-auto my-20 pt-10 section-fade"
+          style={{ animationDelay: "3.2s" }}
+        >
+          <h3 className="text-4xl font-bold text-center mb-12 text-amber-500">
+            Leadership & Community Service
+          </h3>
+          <div className="space-y-6">
+            {LEADERSHIP_DATA.map((leadership, index) => (
+              <div
+                key={index}
+                className="p-6 bg-neutral-800 rounded-xl shadow-xl border-l-4 border-amber-600 transition duration-300 hover:border-amber-400"
+              >
+                <div className="flex justify-between items-start flex-wrap mb-2">
+                  <h4 className="text-xl font-bold text-white leading-tight">
+                    {leadership.role}
+                  </h4>
+                  <p className="text-sm font-medium text-amber-400">
+                    {leadership.year}
+                  </p>
+                </div>
+                <p className="text-neutral-300">{leadership.details}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* --- PROFESSIONAL MEMBERSHIPS SECTION --- */}
+        <section
+          className="max-w-5xl mx-auto my-20 pt-10 section-fade"
+          style={{ animationDelay: "3.3s" }}
+        >
+          <h3 className="text-4xl font-bold text-center mb-12 text-amber-500">
+            Professional Memberships
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {PROFESSIONAL_MEMBERSHIPS.map((membership, index) => (
+              <div
+                key={index}
+                className="p-4 bg-neutral-800 rounded-lg shadow-md text-center transition duration-300 hover:bg-amber-500/10 hover:scale-[1.02]"
+              >
+                <p className="text-md font-medium text-neutral-200">
+                  {membership}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* --- INTERNATIONAL TRAINING SECTION --- */}
+        <section
+          className="max-w-5xl mx-auto my-20 pt-10 section-fade"
+          style={{ animationDelay: "3.4s" }}
+        >
+          <h3 className="text-4xl font-bold text-center mb-12 text-amber-500">
+            International Training & Conferences
+          </h3>
+          <div className="p-8 bg-neutral-800/80 backdrop-blur-sm rounded-xl shadow-2xl border-t-4 border-amber-500">
+            <p className="text-lg leading-relaxed text-neutral-200 mb-6 text-center">
+              Dr Akinfala has participated in various programs, training, and conferences on leadership, taxation, and finance on both national and international levels. He has attended training, seminars, and conferences in the following countries:
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {INTERNATIONAL_TRAINING.map((country, index) => (
+                <span
+                  key={index}
+                  className="px-4 py-2 bg-amber-600/20 text-amber-400 rounded-full text-sm font-medium border border-amber-600/50 hover:bg-amber-600/30 transition duration-300"
+                >
+                  {country}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* --- FAMILY SECTION --- */}
+        <section
+          className="max-w-5xl mx-auto my-20 pt-10 section-fade"
+          style={{ animationDelay: "3.45s" }}
+        >
+          <h3 className="text-4xl font-bold text-center mb-12 text-amber-500">
+            Personal Life
+          </h3>
+          <div className="p-8 bg-neutral-800/80 backdrop-blur-sm rounded-xl shadow-2xl border-t-4 border-amber-500 text-center">
+            <p className="text-lg leading-relaxed text-neutral-200">
+              {FAMILY_SECTION.description}
+            </p>
           </div>
         </section>
 
